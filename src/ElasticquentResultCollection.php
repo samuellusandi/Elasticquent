@@ -9,6 +9,7 @@ class ElasticquentResultCollection extends \Illuminate\Database\Eloquent\Collect
     protected $shards;
     protected $hits;
     protected $aggregations = null;
+    protected $suggest = null;
 
     /**
      * Create a new instance containing Elasticsearch results
@@ -52,6 +53,7 @@ class ElasticquentResultCollection extends \Illuminate\Database\Eloquent\Collect
         $this->shards = isset($meta['_shards']) ? $meta['_shards'] : null;
         $this->hits = isset($meta['hits']) ? $meta['hits'] : null;
         $this->aggregations = isset($meta['aggregations']) ? $meta['aggregations'] : [];
+        $this->suggest = isset($meta['suggest']) ? $meta['suggest'] : [];
 
         return $this;
     }
@@ -130,6 +132,19 @@ class ElasticquentResultCollection extends \Illuminate\Database\Eloquent\Collect
     public function getAggregations()
     {
         return $this->aggregations;
+    }
+
+    /**
+     * Get suggest
+     * 
+     * Get the suggest meta from
+     * Elasticsearch results.
+     * 
+     * @return array
+     */
+    public function getSuggest()
+    {
+        return $this->suggest;
     }
 
     /**
