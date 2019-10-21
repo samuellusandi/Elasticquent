@@ -135,6 +135,19 @@ class ElasticquentResultCollection extends \Illuminate\Database\Eloquent\Collect
     }
 
     /**
+     * Get suggest
+     * 
+     * Get the suggest field from
+     * Elasticsearch results.
+     * 
+     * @return array
+     */
+    public function getSuggest()
+    {
+        return $this->suggest;
+    }
+
+    /**
      * Paginate Collection
      *
      * @param int $pageLimit
